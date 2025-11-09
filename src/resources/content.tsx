@@ -78,7 +78,7 @@ const about: About = {
     title: "Introduction",
     description: (
       <>
-        Madhav is a Kerala-based AI/ML engineer and full-stack developer with expertise in
+        Madhav is an AI/ML engineer and full-stack developer with expertise in
         building production-grade machine learning systems. With a strong foundation in Python,
         React, and MLOps, he specializes in creating end-to-end solutions that combine business
         intelligence with technical excellence. His work spans healthcare AI, Climate Tech, 
@@ -106,35 +106,38 @@ const about: About = {
             system using Twilio API for vendor communication and customer engagement. Achieved 85%
             message delivery rate and reduced manual outreach workload by 75%.
           </>,
-          <>
-            Managed vendor relationships and collected quotations from 50+ portable pod
-            manufacturers and plastic recyclers for EPR compliance projects, streamlining vendor
-            onboarding by 30%.
-          </>,
-          <>
-            Conducted mystery shopper tasks and competitive analysis for waste management services
-            across Coimbatore, contributing to operational improvements and service quality
-            enhancement.
-          </>,
+          // <>
+          //   Managed vendor relationships and collected quotations from 50+ portable pod
+          //   manufacturers and plastic recyclers for EPR compliance projects, streamlining vendor
+          //   onboarding by 30%.
+          // </>,
+          // <>
+          //   Conducted mystery shopper tasks and competitive analysis for waste management services
+          //   across Coimbatore, contributing to operational improvements and service quality
+          //   enhancement.
+          // </>,
         ],
         images: [],
       },
       {
         company: "UST",
-        timeframe: "Previous Experience",
-        role: "AIML Engineer Intern",
+        timeframe: "May 2024 - Jul 2024",
+        role: "AI/ML Engineer Intern",
         achievements: [
           <>
-            Contributed to enterprise software development projects with focus on scalable system
-            architecture and deployment strategies.
+            Built a <strong>LLM-guided chess tutoring system</strong> integrating Stockfish with Llama3,
+            Gemma, and GPT-4. Fine-tuned models using advanced Mixture-of-Agents (MOA) methodologies for
+            intelligent game analysis and personalized learning.
           </>,
           <>
-            Gained experience with large-scale distributed systems and cloud infrastructure
-            management.
+            Engineered full-stack solution with optimized backend ML pipeline and interactive frontend,
+            delivering real-time model inference and expert-level chess instruction through natural
+            language interaction.
           </>,
         ],
         images: [],
       },
+      
     ],
   },
   studies: {
