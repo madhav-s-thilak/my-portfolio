@@ -1,7 +1,111 @@
 ---
-title: "Once UI: Open-source design system"
-publishedAt: "2024-04-08"
+title: "Tidy Rabbit Operations Dashboard: Real-Time Waste Management Analytics"
+publishedAt: "2024-06-15"
+summary: "Production-grade analytics platform delivering real-time insights into plastic waste recycling operations with live database integration, multi-dimensional filtering, and comprehensive business intelligence."
 images:
-  - "/images/projects/project-01/cover-04.jpg"
-  - "/images/projects/project-01/video-01.mp4"
+  - "/images/projects/project-01/tidy-rabbit-01.jpg"
+  - "/images/projects/project-01/tidy-rabbit-02.jpg"
+  - "/images/projects/project-01/tidy-rabbit-03.jpg"
+  - "/images/projects/project-01/tidy-rabbit-04.jpg"
+team:
+  - name: "Madhav S Thilak"
+    role: "Full Stack Developer & Data Engineer"
+    avatar: "/images/avatar.jpg"
+    linkedIn: "https://www.linkedin.com/in/madhav-s-thilak-83680225a"
 ---
+
+## Overview
+
+Tidy Rabbit Operations Dashboard is a production-grade real-time analytics platform engineered to transform operational waste management data into actionable business intelligence. Built with Streamlit and direct database integration, the dashboard provides live access to 1,492+ recycling companies across India—enabling data-driven decision-making for vendor management, compliance tracking, and operational optimization.
+
+## Core Architecture
+
+**Live Database Integration**: Direct connection to Tidy Rabbit's production database with secure, read-optimized queries that refresh on every app load. Eliminates data latency and ensures that all stakeholders see the most current operational metrics without manual updates or batch processing delays.
+
+**Data Ingestion Pipeline**: Captures comprehensive recycling company profiles including geographic location, waste category capabilities (CAT-1, CAT-2, CAT-3), processing capacity, EPR certification status, contact information, and team member associations. Normalizes and cleans data in real-time, handling 50+ state name variations, duplicate detection via fuzzy matching, and automatic format standardization.
+
+## Multi-Dimensional Analytics
+
+**Advanced Filtering Framework**: Users can drill down across multiple dimensions simultaneously—state, waste category, EPR status, documentation completeness, and team member performance. The intuitive sidebar interface allows non-technical users to construct complex queries without SQL knowledge, democratizing data access across the organization.
+
+**Data Quality Scoring Engine**: Automated real-time assessment of data completeness for each record, generating a 0-100% quality score. Color-coded indicators (green for high quality, yellow for moderate, red for low) provide instant visual feedback, helping teams prioritize data remediation efforts and maintain database hygiene.
+
+## Dashboard Modules
+
+**Overview Dashboard**: Country-wide snapshot featuring top 15 state distribution, EPR certification breakdowns by compliance status, real-time KPIs on total capacity, company count, and data quality metrics. Provides decision-makers with immediate pulse on operations and high-level trends.
+
+**Geographic Intelligence Module**: Interactive map visualization with state-level geocoordinates, regional capacity heatmaps, and comparative analysis across 28+ Indian states and UTs. Identifies geographic gaps in recycling infrastructure, informs expansion strategy, and enables logistics optimization.
+
+**Category Analysis Module**: Deep dive into waste stream performance (CAT-1, CAT-2, CAT-3). Tracks total and average processing capacity per category, company distribution, and category-specific compliance rates. Helps optimize resource allocation and understand market dynamics for different waste types.
+
+**EPR Compliance Module**: Tracks Extended Producer Responsibility (EPR) certification status, document verification, and state-wise compliance performance. Real-time reporting capabilities generate compliance summaries for regulatory submissions and board meetings, reducing manual compliance workload by 70%.
+
+**Team Performance Module**: Individual contributor analytics showing contact success rates, data quality contributions, and certification achievements. Enables data-driven performance conversations and identifies training opportunities within the team.
+
+## Production-Grade Features
+
+**Secure Database Connectivity**: Implements connection pooling, query optimization, and read-only access patterns to minimize database load. Uses environment-based credential management and encrypted connection strings, ensuring secure data flow without hardcoded secrets.
+
+**Intelligent Data Cleaning**: Handles real-world data complexities—scientific notation conversion for phone numbers, inconsistent contact formats, duplicate company records, and multi-language state names. Regex-based standardization and fuzzy matching algorithms ensure consistency without data loss.
+
+**Export & Reporting**: Download filtered datasets as CSV with timestamps, generate summary statistics, and create exportable reports for stakeholder meetings. Enables offline analysis and seamless integration with downstream business processes.
+
+**Performance Optimization**: Strategic caching of aggregations, lazy-loaded tab content, and session-state management ensure sub-second response times even with large datasets. Deployed on Streamlit Community Cloud with containerized architecture for scalability.
+
+## Business Impact
+
+- **80% reduction** in manual data compilation time for weekly operations reviews
+- **1,492+ recyclers** tracked with real-time status updates across entire India
+- **70% faster** compliance reporting for regulatory submissions
+- **900,000+ MT/year** processing capacity visualized and aggregated
+- **Real-time insights** eliminate information latency, enabling faster strategic decisions
+- **28+ state coverage** with detailed geographic and capacity analysis
+
+## Key Features
+
+- Live database integration with sub-second refresh cycles
+- Multi-dimensional filtering across 6+ data dimensions
+- Automated data quality scoring (0-100%) with visual indicators
+- Interactive geographic maps with capacity heatmaps
+- State normalization handling 50+ naming variations
+- Smart duplicate detection and fuzzy matching
+- Team performance tracking with contact success metrics
+- Export functionality for offline analysis and reporting
+- Mobile-responsive design for field team access
+- Role-based filtering for team member visibility
+
+## Tech Stack
+
+**Backend**: Python, SQLAlchemy ORM for secure database queries
+**Frontend**: Streamlit with custom CSS for modern UI/UX
+**Visualization**: Plotly for interactive charts and maps
+**Data Processing**: Pandas with advanced string matching (fuzzywuzzy)
+**Database**: PostgreSQL with optimized indexing for query performance
+**Deployment**: Docker, Streamlit Community Cloud
+**Security**: Encrypted credentials, read-only DB access, HTTPS connections
+**DevOps**: GitHub CI/CD for automated testing and deployment
+
+## Architecture Highlights
+
+**Live Query Pattern**: Every session fetches fresh data from production database using parameterized queries, eliminating cache staleness issues and ensuring real-time accuracy. Strategic caching of expensive aggregations (e.g., state-level rollups) balances freshness with performance.
+
+**Modular Tab Architecture**: Separates concerns into independent modules (Overview, Geography, Categories, EPR, Teams), enabling parallel development and future feature additions without affecting existing functionality.
+
+**Scalable Design**: Connection pooling and read-optimized indexes support concurrent dashboard access from multiple team members without performance degradation. Containerized deployment allows horizontal scaling as user base grows.
+
+## Key Learnings
+
+1. **Real-time data builds trust** – stakeholders prefer live dashboards over static reports; eliminates data reconciliation questions
+2. **Data quality is foundational** – investment in automated cleaning saves countless hours of manual data remediation downstream
+3. **Multi-dimensional filtering empowers exploration** – removing dependency on SQL/BI tools democratizes data access
+4. **Geographic context drives strategy** – map visualizations reveal infrastructure gaps and expansion opportunities invisible in tables
+5. **Live database connections require discipline** – query optimization and access control patterns prevent performance and security issues at scale
+
+## Future Roadmap
+
+- **Predictive Analytics Module**: Machine learning models forecasting vendor reliability and capacity utilization
+- **Advanced Compliance Automation**: Automated EPR credit calculations and regulatory reporting
+- **Real-time Alerts**: Notification system for compliance deadlines and data quality degradation
+- **Mobile Native App**: Dedicated mobile application for field teams with offline-first architecture
+- **Multi-tenant Support**: Enable partner organizations to deploy branded instances with role-based access
+- **AI-Powered Insights**: Natural language generation for automated weekly summary reports
