@@ -41,21 +41,28 @@ const home: Home = {
   image: "/images/og/home.jpg",
   label: "Home",
   title: `${person.name}'s Portfolio`,
-  description: `AI/ML Engineer specializing in production-grade systems, full-stack development, and business operations`,
-  headline: <>Building intelligent solutions with Python, React, and MLOps</>,
+  description: `Production-grade AI/ML systems engineer | Full-stack developer | Building the future of intelligent automation`,
+  headline: (
+    <>
+      Crafting <strong>intelligent systems</strong> that transform complex problems into elegant,
+      scalable solutions
+    </>
+  ),
   featured: {
     display: true,
-    title: "Featured: MediOps Platform",
+    title: "🚀 Featured: MediOps Platform",
     href: "/work/mediops-platform",
   },
   subline: (
     <>
-      I'm Madhav, an AI/ML engineer and full-stack developer with a passion for deploying
-      production-grade AI systems. Currently interning at Tidy Rabbit, where I build analytics
-      <br /> dashboards, automation systems, and manage Climate Tech operations.
+      I'm Madhav, an <strong>AI/ML engineer & full-stack developer</strong> obsessed with deploying
+      production-grade systems that actually <em>work</em>. Currently building at
+      <strong> Tidy Rabbit</strong> — creating intelligent dashboards, automating workflows, and
+      revolutionizing waste management with cutting-edge technology.
     </>
   ),
 };
+
 
 const about: About = {
   path: "/about",
