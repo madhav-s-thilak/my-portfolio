@@ -9,7 +9,7 @@ const person: Person = {
   avatar: "/images/avatar.jpg",
   email: "madhav.s.thilak@gmail.com",
   location: "Asia/Kolkata", // Coimbatore, India timezone
-  languages: ["English", "Tamil", "Malayalam"],
+  languages: ["English", "Hindi", "Malayalam"],
 };
 
 const newsletter: Newsletter = {
