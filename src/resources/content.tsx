@@ -2,39 +2,32 @@ import { About, Blog, Gallery, Home, Newsletter, Person, Social, Work } from "@/
 import { Line, Logo, Row, Text } from "@once-ui-system/core";
 
 const person: Person = {
-  firstName: "Selene",
-  lastName: "Yu",
-  name: `Selene Yu`,
-  role: "Design Engineer",
+  firstName: "Madhav",
+  lastName: "S Thilak",
+  name: `Madhav S Thilak`,
+  role: "AI/ML Engineer & Full Stack Developer",
   avatar: "/images/avatar.jpg",
-  email: "example@gmail.com",
-  location: "Asia/Jakarta", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
-  languages: ["English", "Bahasa"], // optional: Leave the array empty if you don't want to display languages
+  email: "madhav.s.thilak@gmail.com",
+  location: "Asia/Kolkata", // Coimbatore, India timezone
+  languages: ["English", "Tamil", "Malayalam"],
 };
 
 const newsletter: Newsletter = {
-  display: true,
+  display: false,
   title: <>Subscribe to {person.firstName}'s Newsletter</>,
-  description: <>My weekly newsletter about creativity and engineering</>,
+  description: <>Weekly insights on AI/ML, full-stack development, and production systems</>,
 };
 
 const social: Social = [
-  // Links are automatically displayed.
-  // Import new icons in /once-ui/icons.ts
   {
     name: "GitHub",
     icon: "github",
-    link: "https://github.com/once-ui-system",
+    link: "https://github.com/madhav-s-thilak",
   },
   {
     name: "LinkedIn",
     icon: "linkedin",
-    link: "https://www.linkedin.com/company/once-ui/",
-  },
-  {
-    name: "Threads",
-    icon: "threads",
-    link: "https://www.threads.com/@once_ui",
+    link: "https://www.linkedin.com/in/madhav-s-thilak-83680225a",
   },
   {
     name: "Email",
@@ -48,31 +41,18 @@ const home: Home = {
   image: "/images/og/home.jpg",
   label: "Home",
   title: `${person.name}'s Portfolio`,
-  description: `Portfolio website showcasing my work as a ${person.role}`,
-  headline: <>Building bridges between design and code</>,
+  description: `AI/ML Engineer specializing in production-grade systems, full-stack development, and business operations`,
+  headline: <>Building intelligent solutions with Python, React, and MLOps</>,
   featured: {
     display: true,
-    title: (
-      <Row gap="12" vertical="center">
-        <strong className="ml-4">Once UI</strong>{" "}
-        <Line background="brand-alpha-strong" vert height="20" />
-        <Text marginRight="4" onBackground="brand-medium">
-          Featured work
-        </Text>
-      </Row>
-    ),
-    href: "/work/building-once-ui-a-customizable-design-system",
+    title: "Featured: MediOps Platform",
+    href: "/work/mediops-platform",
   },
   subline: (
     <>
-      I'm Selene, a design engineer at{" "}
-      <Logo
-        dark
-        icon="/trademarks/wordmark-dark.svg"
-        style={{ display: "inline-flex", top: "0.25em", marginLeft: "-0.25em" }}
-      />
-      , where I craft intuitive
-      <br /> user experiences. After hours, I build my own projects.
+      I'm Madhav, an AI/ML engineer and full-stack developer with a passion for deploying
+      production-grade AI systems. Currently interning at Tidy Rabbit, where I build analytics
+      <br /> dashboards, automation systems, and manage Climate Tech operations.
     </>
   ),
 };
@@ -81,16 +61,16 @@ const about: About = {
   path: "/about",
   label: "About",
   title: `About – ${person.name}`,
-  description: `Meet ${person.name}, ${person.role} from ${person.location}`,
+  description: `Meet ${person.name}, ${person.role} from Kerala, India`,
   tableOfContent: {
     display: true,
-    subItems: false,
+    subItems: true,
   },
   avatar: {
     display: true,
   },
   calendar: {
-    display: true,
+    display: false,
     link: "https://cal.com",
   },
   intro: {
@@ -98,52 +78,59 @@ const about: About = {
     title: "Introduction",
     description: (
       <>
-        Selene is a Jakarta-based design engineer with a passion for transforming complex challenges
-        into simple, elegant design solutions. Her work spans digital interfaces, interactive
-        experiences, and the convergence of design and technology.
+        Madhav is a Kerala-based AI/ML engineer and full-stack developer with expertise in
+        building production-grade machine learning systems. With a strong foundation in Python,
+        React, and MLOps, he specializes in creating end-to-end solutions that combine business
+        intelligence with technical excellence. His work spans healthcare AI, Climate Tech, 
+        and business process automation.
       </>
     ),
   },
   work: {
-    display: true, // set to false to hide this section
+    display: true,
     title: "Work Experience",
     experiences: [
       {
-        company: "FLY",
-        timeframe: "2022 - Present",
-        role: "Senior Design Engineer",
+        company: "Tidy Rabbit",
+        timeframe: "Jun 2024 - Present (6 months)",
+        role: "Business Operations Intern",
         achievements: [
           <>
-            Redesigned the UI/UX for the FLY platform, resulting in a 20% increase in user
-            engagement and 30% faster load times.
+            Developed <strong>Tidy Rabbit Dashboard</strong> - a comprehensive analytics platform
+            using Streamlit, Python, and PostgreSQL for real-time waste management operations
+            tracking. The dashboard reduced manual reporting time by 80% and improved data
+            accessibility by 40%.
           </>,
           <>
-            Spearheaded the integration of AI tools into design workflows, enabling designers to
-            iterate 50% faster.
+            Created <strong>WhatsApp Message Automator</strong> - an intelligent message delivery
+            system using Twilio API for vendor communication and customer engagement. Achieved 85%
+            message delivery rate and reduced manual outreach workload by 75%.
+          </>,
+          <>
+            Managed vendor relationships and collected quotations from 50+ portable pod
+            manufacturers and plastic recyclers for EPR compliance projects, streamlining vendor
+            onboarding by 30%.
+          </>,
+          <>
+            Conducted mystery shopper tasks and competitive analysis for waste management services
+            across Coimbatore, contributing to operational improvements and service quality
+            enhancement.
           </>,
         ],
-        images: [
-          // optional: leave the array empty if you don't want to display images
-          {
-            src: "/images/projects/project-01/cover-01.jpg",
-            alt: "Once UI Project",
-            width: 16,
-            height: 9,
-          },
-        ],
+        images: [],
       },
       {
-        company: "Creativ3",
-        timeframe: "2018 - 2022",
-        role: "Lead Designer",
+        company: "UST",
+        timeframe: "Previous Experience",
+        role: "AIML Engineer Intern",
         achievements: [
           <>
-            Developed a design system that unified the brand across multiple platforms, improving
-            design consistency by 40%.
+            Contributed to enterprise software development projects with focus on scalable system
+            architecture and deployment strategies.
           </>,
           <>
-            Led a cross-functional team to launch a new product line, contributing to a 15% increase
-            in overall company revenue.
+            Gained experience with large-scale distributed systems and cloud infrastructure
+            management.
           </>,
         ],
         images: [],
@@ -151,79 +138,103 @@ const about: About = {
     ],
   },
   studies: {
-    display: true, // set to false to hide this section
-    title: "Studies",
+    display: true,
+    title: "Education",
     institutions: [
       {
-        name: "University of Jakarta",
-        description: <>Studied software engineering.</>,
+        name: "BITS Pilani",
+        description: <>B.Tech in Civil Engineering (Pursuing)</>,
       },
       {
-        name: "Build the Future",
-        description: <>Studied online marketing and personal branding.</>,
+        name: "IBM Full Stack Software Developer",
+        description: (
+          <>
+            Completed 15 course certificates covering Full Stack Development, Cloud Computing,
+            DevOps, and Modern Web Technologies (November 2025)
+          </>
+        ),
       },
     ],
   },
   technical: {
-    display: true, // set to false to hide this section
-    title: "Technical skills",
+    display: true,
+    title: "Technical Skills",
     skills: [
       {
-        title: "Figma",
+        title: "Machine Learning & AI",
         description: (
-          <>Able to prototype in Figma with Once UI with unnatural speed.</>
+          <>
+            Production-grade ML systems with MLOps capabilities. Expertise in building,
+            monitoring, and deploying multi-label classification models, implementing explainable
+            AI with SHAP and GradCAM, and automated model retraining pipelines.
+          </>
         ),
         tags: [
-          {
-            name: "Figma",
-            icon: "figma",
-          },
+          { name: "Python", icon: "python" },
+          { name: "TensorFlow", icon: "code" },
+          { name: "PyTorch", icon: "code" },
+          { name: "Scikit-learn", icon: "code" },
+          { name: "MLOps", icon: "settings" },
+          { name: "SHAP", icon: "analytics" },
         ],
-        // optional: leave the array empty if you don't want to display images
-        images: [
-          {
-            src: "/images/projects/project-01/cover-02.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
-          {
-            src: "/images/projects/project-01/cover-03.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
-        ],
+        images: [],
       },
       {
-        title: "Next.js",
+        title: "Full Stack Development",
         description: (
-          <>Building next gen apps with Next.js + Once UI + Supabase.</>
+          <>
+            End-to-end web application development with modern frameworks. Built interactive
+            dashboards, RESTful APIs, and real-time data visualization systems. Proficient in
+            responsive design, state management, and cloud deployment.
+          </>
         ),
         tags: [
-          {
-            name: "JavaScript",
-            icon: "javascript",
-          },
-          {
-            name: "Next.js",
-            icon: "nextjs",
-          },
-          {
-            name: "Supabase",
-            icon: "supabase",
-          },
+          { name: "React", icon: "react" },
+          { name: "Next.js", icon: "nextjs" },
+          { name: "Streamlit", icon: "code" },
+          { name: "JavaScript", icon: "javascript" },
+          { name: "TypeScript", icon: "code" },
+          { name: "HTML/CSS", icon: "code" },
         ],
-        // optional: leave the array empty if you don't want to display images
-        images: [
-          {
-            src: "/images/projects/project-01/cover-04.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
+        images: [],
+      },
+      {
+        title: "Backend & Databases",
+        description: (
+          <>
+            Robust backend systems with API design, database management, and cloud infrastructure.
+            Experience with PostgreSQL, SQLite, real-time data processing, and scalable
+            architectures for enterprise applications.
+          </>
+        ),
+        tags: [
+          { name: "Python", icon: "python" },
+          { name: "Flask", icon: "code" },
+          { name: "FastAPI", icon: "code" },
+          { name: "PostgreSQL", icon: "database" },
+          { name: "SQL", icon: "database" },
+          { name: "REST APIs", icon: "settings" },
         ],
-      },  
+        images: [],
+      },
+      {
+        title: "Business Operations & Automation",
+        description: (
+          <>
+            Vendor management, EPR compliance implementation, business process automation, and
+            analytics. Strong communication skills with experience in stakeholder management,
+            quotation analysis, and operational efficiency optimization.
+          </>
+        ),
+        tags: [
+          { name: "Vendor Mgmt", icon: "settings" },
+          { name: "EPR Compliance", icon: "check" },
+          { name: "Automation", icon: "automation" },
+          { name: "Analytics", icon: "analytics" },
+          { name: "Streamlit", icon: "code" },
+        ],
+        images: [],
+      },
     ],
   },
 };
@@ -231,67 +242,41 @@ const about: About = {
 const blog: Blog = {
   path: "/blog",
   label: "Blog",
-  title: "Writing about design and tech...",
-  description: `Read what ${person.name} has been up to recently`,
-  // Create new blog posts by adding a new .mdx file to app/blog/posts
-  // All posts will be listed on the /blog route
+  title: "Insights on AI/ML and Full Stack Development",
+  description: `Read about ${person.name}'s journey in building production ML systems`,
 };
 
 const work: Work = {
   path: "/work",
   label: "Work",
   title: `Projects – ${person.name}`,
-  description: `Design and dev projects by ${person.name}`,
-  // Create new project pages by adding a new .mdx file to app/blog/posts
-  // All projects will be listed on the /home and /work routes
+  description: `AI/ML and full-stack development projects by ${person.name}`,
 };
 
 const gallery: Gallery = {
   path: "/gallery",
   label: "Gallery",
-  title: `Photo gallery – ${person.name}`,
-  description: `A photo collection by ${person.name}`,
-  // Images by https://lorant.one
-  // These are placeholder images, replace with your own
+  title: `Project Gallery – ${person.name}`,
+  description: `Visual showcase of projects and team moments by ${person.name}`,
   images: [
     {
       src: "/images/gallery/horizontal-1.jpg",
-      alt: "image",
-      orientation: "horizontal",
-    },
-    {
-      src: "/images/gallery/vertical-4.jpg",
-      alt: "image",
-      orientation: "vertical",
-    },
-    {
-      src: "/images/gallery/horizontal-3.jpg",
-      alt: "image",
+      alt: "Project showcase",
       orientation: "horizontal",
     },
     {
       src: "/images/gallery/vertical-1.jpg",
-      alt: "image",
-      orientation: "vertical",
-    },
-    {
-      src: "/images/gallery/vertical-2.jpg",
-      alt: "image",
+      alt: "Team collaboration",
       orientation: "vertical",
     },
     {
       src: "/images/gallery/horizontal-2.jpg",
-      alt: "image",
+      alt: "Dashboard development",
       orientation: "horizontal",
     },
     {
-      src: "/images/gallery/horizontal-4.jpg",
-      alt: "image",
-      orientation: "horizontal",
-    },
-    {
-      src: "/images/gallery/vertical-3.jpg",
-      alt: "image",
+      src: "/images/gallery/vertical-2.jpg",
+      alt: "ML model training",
       orientation: "vertical",
     },
   ],
