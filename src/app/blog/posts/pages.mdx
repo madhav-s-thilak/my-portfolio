@@ -1,56 +1,193 @@
 ---
-title: "Enable or disable pages for your portfolio"
-summary: "Magic Portfolio's RouteGuard component takes care of conditionally rendering pages based on your settings."
-image: "/images/gallery/horizontal-2.jpg"
-publishedAt: "2025-04-22"
-tag: "Magic Portfolio"
+title: "Why I Obsess Over Automated End-to-End ML Workflows"
+summary: "Zero human intervention. Zero broken pipelines. Here's how I automated every step of model training, deployment, and monitoring—so my team never has to babysit ML again."
+image: "/images/gallery/Blog-02.jpg"
+publishedAt: "2025-11-10"
+tag: "MLOps"
 ---
 
-## Enable or disable pages
+## The 3 AM Problem
 
-Magic Portfolio's `RouteGuard` component takes care of conditionally rendering pages based on the `routes` object in the `resources/config.js` file.
+2:47 AM. Your Slack blows up.
 
-<CodeBlock
-    marginBottom="16"
-    highlight="6"
-    codes={[
-  {
-    code:
-`const routes = {
-    '/':        true,
-    '/about':   true,
-    '/work':    true,
-    '/blog':    true,
-    '/gallery': false,
-};`,
-    language: "tsx",
-    label: "src/app/resources/config.js"
-  }
-]} />
+**🚨 ALERT: Model Performance Degraded 8%**
 
-The code above will ensure that the `/gallery` page is not accessible and is not displayed in the navigation.
+Your heart sinks. You drag yourself out of bed, pull up the logs, and realize: nobody retrained the model in two weeks. Data shifted. Performance tanked. You're now 3 hours into a firefighting session, manually retraining, deploying, and crossing your fingers.
 
-## Add new pages
+This was my life before I obsessed over automation.
 
-When creating a new page, it needs to be added to the `routes` object in the `resources/config.js` file.
+Now? I sleep. The pipeline wakes up, retrains automatically, detects if performance is bad, rolls back, and sends me a summary coffee email. *That* is the dream.
 
-<CodeBlock
-    marginBottom="16"
-    highlight="6"
-    codes={[
-  {
-    code:
-`const routes = {
-    '/':        true,
-    '/about':   true,
-    '/work':    true,
-    '/blog':    true,
-    '/gallery': false,
-    '/music': true,
-};`,
-    language: "tsx",
-    label: "src/app/resources/config.js"
-  }
-]} />
+And it's not that complicated to build.
 
-The code above will ensure that the `/music` page is accessible. Users will be able to navigate to it after adding it to the navigation menu in the `components/Header.tsx` file.
+---
+
+## The Myth: "ML Automation is Only for Big Tech"
+
+**Lies.** I built my first fully-automated ML pipeline as a junior at Tidy Rabbit with:
+
+- DVC (free, open-source)
+- GitHub Actions (free tier)
+- MLflow (free, self-hosted)
+- A healthy dose of paranoia
+
+No fancy Kubeflow. No expensive data platforms. Just good engineering practices, applied to ML.
+
+---
+
+## The Vision: Zero-Touch ML
+
+Here's what "zero-touch" means to me:
+
+1. **Data changes** → Pipeline detects it automatically
+2. **Model gets retrained** → No human button-pressing
+3. **New version gets tested** → Against real metrics
+4. **Old model still running** → Until new one proves better
+5. **If new model fails** → Auto-rollback
+6. **You get a report** → Next morning with coffee
+
+The engineer's job? Building the pipeline once, then maintaining it like it's a critical server (because it is).
+
+---
+
+## Step 1: Data Version Control with DVC
+
+Most people forget this step. Data changes. Models break. You have no idea what went wrong.
+
+**DVC = Git for data.**
+
+Now, whenever your training data changes, you commit it to DVC. Your pipeline always knows which version it's using.
+
+**Why this matters:**
+- Reproducibility (data v1.2 + model v3 always produce the same results)
+- Debugging (if model broke, check what data changed)
+- Collaboration (team knows exactly what data the model saw)
+
+---
+
+## Step 2: Automated Training with MLflow
+
+MLflow is your experiment tracker + model registry. Every training run gets logged with:
+
+- Hyperparameters
+- Metrics (accuracy, loss, etc.)
+- Artifacts (model weights, plots)
+- Code version (Git commit)
+
+Every training run is logged. You can compare runs, see which hyperparameters worked best, and promote the best model to "production" via the MLflow UI.
+
+---
+
+## Step 3: GitHub Actions for the Trigger
+
+Here's where the magic happens. Every time your data changes, GitHub Actions automatically kicks off training.
+
+Now your pipeline runs:
+- **On schedule** (every Monday, or whenever)
+- **On data changes** (Git detects new data, triggers training)
+- **Manually** (you click a button)
+
+And you get a Slack notification when it's done.
+
+---
+
+## Step 4: Drift Detection (The Lifesaver)
+
+Your model is running fine. Then, *boom*, performance drops 3%. Why? **Data drift.**
+
+Monitoring catches this:
+
+If drift is detected, your pipeline automatically:
+1. Retrains the model
+2. Tests it
+3. If it's better, deploys
+4. If it's worse, alerts you to investigate
+
+---
+
+## Step 5: Automated Rollback
+
+Production is running model v5. New model v6 is deployed. Suddenly, errors spike.
+
+Auto-rollback activates:
+
+You wake up to a Slack message: "Model v6 degraded performance. Auto-rolled back to v5." Crisis averted while you slept.
+
+---
+
+## The Results: What Automation Bought Me
+
+At Tidy Rabbit, automating this workflow:
+
+- **80% reduction** in manual retraining work
+- **90% faster** incident response (automatic rollback vs. manual investigation)
+- **Zero missed retrainings** (happens on schedule, always)
+- **100% reproducibility** (every model tagged with data version, code commit, hyperparams)
+- **Confident deployments** (tested, compared to baseline, before humans touch it)
+
+---
+
+## The Honest Challenges
+
+### Challenge 1: Setting Up MLflow Can Feel Overwhelming
+
+First time? Yeah, it's a lot. But it's a one-time investment.
+
+**My shortcut:**
+- Use [Databricks Community Edition](https://databricks.com/product/community-edition) (free MLflow hosting)
+- Or host MLflow in a Docker container on any server
+- Or use [Neptune.ai](https://neptune.ai) (free tier covers small projects)
+
+### Challenge 2: GitHub Actions Has Secrets Management
+
+Storing API keys, database URLs, etc., in CI/CD is risky.
+
+**Best practice:**
+- Store secrets in GitHub Secrets (encrypted)
+- Never print them in logs
+- Rotate them regularly
+
+### Challenge 3: Data Can Be Large
+
+DVC handles large files, but fetching 10GB+ can be slow.
+
+**My solution:**
+- Store data in cloud (S3, GCS)
+- DVC points to cloud storage
+- Only pull what you need for training
+
+---
+
+## What I'd Change If I Rebuilt
+
+1. **Start with monitoring earlier** — Don't wait to deploy to realize you need drift detection
+2. **Version everything** — Code, data, models, configs (one commit per training run)
+3. **Test rollback procedures** — Don't discover failures in production
+4. **Alert on silence** — If pipeline doesn't run when expected, that's an error too
+5. **Document the damn pipeline** — Future you will thank you
+
+---
+
+## Key Takeaways
+
+- **Automation isn't a luxury—it's infrastructure.** Manual ML processes don't scale.
+- **DVC + GitHub Actions + MLflow = production-grade ML.** No fancy platforms needed.
+- **Data versioning is as important as code versioning.** Reproducibility depends on it.
+- **Drift detection catches problems before they become emergencies.** Always monitor.
+- **Auto-rollback saves careers.** Bad deployments happen; having escape routes saves reputations.
+
+---
+
+## Next Steps
+
+1. **Start small:** Add DVC to one project
+2. **Add GitHub Actions:** Create a simple train-on-schedule workflow
+3. **Deploy MLflow:** (Free tier is fine)
+4. **Measure the win:** Track how much manual work you save
+5. **Expand:** Copy the pattern to more projects
+
+Because the best engineer is the one sleeping while their pipeline works.
+
+---
+
+**Building this? Curious? Hit me up. I love talking about ML infrastructure that actually works.**

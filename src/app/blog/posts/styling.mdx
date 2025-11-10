@@ -1,83 +1,214 @@
 ---
-title: "Styling your portfolio"
-summary: "Magic Portfolio's styling is based on Once UI's customization through data-attributes."
-image: "/images/gallery/horizontal-3.jpg"
-publishedAt: "2025-04-21"
-tag: "Magic Portfolio"
+title: "Deploy Like a Pro: Hosting ML Apps on Vercel, Hugging Face, and Streamlit Cloud"
+summary: "Shipping code is easy. Shipping working demos that actually impress recruiters is a different beast. Here's my honest guide to choosing—and mastering—the right deployment platform for your ML portfolio."
+image: "/images/gallery/Blog-03.jpg"
+publishedAt: "2025-11-10"
+tag: "DevOps"
 ---
 
-## Global style
+## The Deployment Nightmare
 
-Magic Portfolio's styling is based on Once UI's customization through data-attributes. You can generate a custom color palette for brand, accent and neutral colors on [Once UI](https://once-ui.com/customize) where you'll find instructions on how to apply it.
+You've built an amazing machine learning project. The model works. The code is clean. Your GitHub repo is pristine.
 
-<CodeBlock
-    marginBottom="16"
-    codes={[
-  {
-    code:
-`theme:       'dark',         // dark | light
-neutral:     'gray',         // sand | gray | slate
-brand:       'blue',         // blue | indigo | violet | magenta | pink | red | orange | yellow | moss | green | emerald | aqua | cyan
-accent:      'indigo',       // blue | indigo | violet | magenta | pink | red | orange | yellow | moss | green | emerald | aqua | cyan
-solid:       'contrast',     // color | contrast
-solidStyle:  'flat',         // flat | plastic
-border:      'playful',      // rounded | playful | conservative
-surface:     'translucent',  // filled | translucent
-transition:  'all',          // all | micro | macro
-scaling:     '100',          // 90 | 95 | 100 | 105 | 110`, 
-    language: "tsx",
-    label: "src/app/resources/config.js"
-  }
-]} />
+Then reality hits: **Where do I deploy this?**
 
-## Background effect
+You Google. Stack Overflow explodes with "Just use Docker!" and "Deploy to AWS!" You're paralyzed. Do you need a Kubernetes cluster? Is Vercel overkill for ML? Will Hugging Face Spaces auto-scale? Can Streamlit Cloud handle your API calls?
 
-There's a pre-configured background in `layout.tsx` that you can modify in the config file. Set graphic elements such as gradient, dots, lines, and grid and configure their appearance.
+This was me six months ago. I deployed the same MediOps project to three different platforms, broke it twice, and finally cracked the code.
 
-<CodeBlock
-    codeHeight={24}
-    marginBottom="16"
-    codes={[
-  {
-    code:
-`const effects = {
-    mask: {
-      cursor: false,
-      x: 50,
-      y: 0,
-      radius: 100
-    },
-    gradient: {
-      display: true,
-      x: 50,
-      y: -25,
-      width: 100,
-      height: 100,
-      tilt: 0,
-      colorStart: 'accent-background-strong',
-      colorEnd: 'static-transparent',
-      opacity: 50
-    },
-    dots: {
-      display: true,
-      size: 2,
-      color: 'brand-on-background-weak',
-      opacity: 20
-    },
-    lines: {
-      display: false,
-      color: 'neutral-alpha-weak',
-      opacity: 100
-    },
-    grid: {
-      display: false,
-      color: 'neutral-alpha-weak',
-      opacity: 100,
-      width: 'var(--static-space-32)',
-      height: 'var(--static-space-32)'
-    }
-}`, 
-    language: "tsx",
-    label: "src/app/resources/config.js"
-  }
-]} />
+Here's everything I learned so you don't have to suffer.
+
+---
+
+## The Myth: "There's a One-Size-Fits-All Platform"
+
+**Wrong.** The right platform depends entirely on what you're building.
+
+Let me be brutally honest: I've deployed portfolio projects on all three. Some were disasters. Some were magical. Here's the truth about each.
+
+---
+
+## Vercel: For Web Apps That Look Like Magic
+
+**Best for:** React frontends, Next.js apps, portfolio projects that need to impress
+
+Vercel is your golden ticket if you're building a beautiful dashboard or interactive demo. It's fast, your custom domain is two clicks away, and deploys feel instantaneous.
+
+### The Good
+
+- **Blazingly fast deployments** (git push → live in 60 seconds)
+- **Custom domain is trivial** (madhav-portfolio.com)
+- **Edge functions** let you run backend logic at the edge
+- **Environment variables** are encrypted and easy to manage
+- **Free tier is genuinely generous** (100GB bandwidth/month)
+- **Gorgeous deployment UI** that makes you feel professional
+
+### The Gotchas
+
+- **Cold starts hurt.** First request to a serverless function = slow
+- **Running ML models is tricky.** Large model files exceed Vercel's 50MB limit per function
+- **Not ideal for data science demos.** Vercel is for web apps, not Jupyter notebooks
+- **API rate limits can bite you.** If you call a Groq API for inference, you'll hit limits fast
+
+### My Use Case
+
+I deployed my portfolio website and a Next.js frontend on Vercel. It's *stunning*. But when I tried running inference there? Disaster. Models timed out.
+
+**My advice:** Use Vercel for your portfolio website, UI dashboards, and Next.js frontends. Not for heavy ML inference.
+
+---
+
+## Hugging Face Spaces: For ML Models & Gradio Apps
+
+**Best for:** Deploying ML models, Streamlit apps, Gradio interfaces, demo apps
+
+Hugging Face Spaces is built *for* machine learning engineers. It's where your models live, where recruiters expect to see your demos, and where inference just *works*.
+
+### The Good
+
+- **Model hosting is seamless.** Upload your model once, it's available forever
+- **Streamlit + Gradio native support.** No extra configuration
+- **Free GPU access.** Yes, really. Free GPUs for inference
+- **Perfect portfolio platform.** Recruiters know Hugging Face
+- **Cold starts are fast.** They've optimized for ML workflows
+- **Private repos available.** Keep your WIP stuff private
+- **Community is incredible.** People actually use Spaces as portfolio pieces
+
+### The Gotchas
+
+- **Compute limits are real.** Free tier = limited CPU/memory
+- **Custom domains cost extra.** ($12/month for private Space URLs)
+- **Overkill for simple web apps.** Why deploy a blog here?
+- **Can be slower than Vercel for pure web content.** Spaces prioritize compute over speed
+
+### My Use Case
+
+I deployed MediOps on Hugging Face Spaces. The X-ray upload, inference, and GradCAM visualization? Butter smooth. Recruiters immediately recognized it as a serious project.
+
+**My advice:** Use HF Spaces for ML models, medical imaging apps, data science demos. It's your default for portfolio ML projects.
+
+---
+
+## Streamlit Cloud: For Rapid Prototyping & Interactive Dashboards
+
+**Best for:** Dashboards, exploratory data apps, internal tools, quick prototypes
+
+Streamlit Cloud is the fast lane. You write Python, commit to GitHub, and it deploys. No HTML. No JavaScript. No Docker. Pure Python.
+
+### The Good
+
+- **Dead simple setup.** Write Python, push to GitHub, done
+- **Interactivity feels native.** Sliders, buttons, dataframes just work
+- **Perfect for dashboards.** The Tidy Rabbit dashboard lives here
+- **Free tier is powerful.** One free app, unlimited viewers
+- **Python-first workflow.** You write *only* Python
+- **Real-time reloading.** Edit code, refresh browser, changes live
+- **Great for demo day.** Show off a working prototype in minutes
+
+### The Gotchas
+
+- **Cold starts are slow.** 30-60 second spin-up time on free tier
+- **Memory limits are tight.** Can't load 10GB models
+- **Rerun on every interaction.** Page refreshes on every button click (performance hit)
+- **State management is weird.** Session state takes getting used to
+- **Less impressive for recruiters.** (vs. polished web apps)
+- **Caching is essential or you'll timeout.** Must optimize hard
+
+### My Use Case
+
+The Tidy Rabbit dashboard runs on Streamlit Cloud. Why? Because it's 1,492 recyclers, real-time filters, and interactive maps—all pure Python. In 2 hours, I had a production-grade analytics platform live.
+
+**My advice:** Use Streamlit for dashboards, data apps, and internal tools. It's magic for rapid iteration. But don't expect a polished, high-traffic experience.
+
+---
+
+## The Decision Matrix: Which Platform for What?
+
+| Project Type | Best Platform | Why |
+|---|---|---|
+| Portfolio website | Vercel | Fast, pretty, shows web skills |
+| ML model demo | Hugging Face Spaces | Built for ML, free GPUs |
+| Interactive dashboard | Streamlit Cloud | Python-only, rapid iteration |
+| Real-time analytics | Streamlit Cloud | Live updates, Plotly charts |
+| Medical imaging app | Hugging Face Spaces | GPU support, serious vibe |
+| Complex web app | Vercel | Full Next.js power |
+| Quick prototype | Streamlit Cloud | Deploy in hours |
+
+---
+
+## The Real Talk: Deployment Failures I Had
+
+### Failure 1: MediOps on Vercel
+
+I tried hosting MediOps inference on Vercel. The model file was 450MB. Vercel's limit? 50MB per function.
+
+**What I learned:** Serverless ≠ ML-friendly. Use Hugging Face for heavy models.
+
+### Failure 2: Streamlit Dashboard With 10GB Data
+
+My first Tidy Rabbit dashboard tried loading the entire PostgreSQL database. Memory issues. Timeouts. Unhappy users.
+
+**What I learned:** Streamlit needs aggressive caching and filtering. Cache query results, paginate data, optimize like hell.
+
+### Failure 3: Portfolio on Hugging Face Spaces
+
+I uploaded my portfolio website as a Space. It *technically* worked but looked clunky. Spaces aren't for static sites.
+
+**What I learned:** Match tool to use case. Spaces = interactive ML apps. Not blogs.
+
+---
+
+## My Deployment Strategy Now
+
+**Portfolio website:** Vercel  
+**ML models & demos:** Hugging Face Spaces  
+**Dashboards & data apps:** Streamlit Cloud  
+**APIs & heavy compute:** Would use Railway or Render (not free, but worth it)
+
+---
+
+## Cold Starts: The Performance Monster
+
+**Cold starts kill user experience.** First request takes 30-60 seconds. Subsequent requests? 1-2 seconds.
+
+**How to survive:**
+- **Streamlit:** Use `@st.cache_resource` to load models once
+- **Hugging Face:** CPU inference is fast; GPU cold starts are brutal
+- **Vercel:** Use Edge Functions sparingly; pre-warm with background jobs
+
+---
+
+## What I'd Do Differently
+
+1. **Choose platform before building.** (Don't architect for Vercel then deploy on Streamlit)
+2. **Test deployment early.** (Not the night before demo day)
+3. **Optimize for cold starts.** (Every second counts for first impression)
+4. **Monitor performance.** (See where users actually suffer)
+5. **Have a backup platform.** (If Streamlit is down, Hugging Face isn't)
+
+---
+
+## Key Takeaways
+
+- **Vercel = web magic.** Dazzle with speed and UI polish
+- **Hugging Face = ML credibility.** Deploy models, impress recruiters
+- **Streamlit = rapid iteration.** Dashboard in hours, not days
+- **Pick the right tool for the job.** Mismatch = pain
+- **Cold starts matter.** Optimize ruthlessly
+- **Recruitment > optimization.** A working demo beats a perfect infra
+
+---
+
+## Next Steps
+
+1. **Start with Streamlit Cloud** if you have a data app (easiest onboarding)
+2. **Use Hugging Face Spaces** for ML models (credibility + GPUs)
+3. **Deploy your portfolio on Vercel** (show web skills + polish)
+4. **Monitor and optimize** (performance = user experience)
+5. **Keep all three live.** (Recruiters check all three platforms)
+
+Because shipping is half the battle. Shipping on the *right* platform is the other half.
+
+---
+
+**Deploying? Hit me up. I've made every deployment mistake so you don't have to.**
