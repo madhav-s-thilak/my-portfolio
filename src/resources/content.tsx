@@ -49,8 +49,8 @@ const home: Home = {
   ),
   featured: {
     display: true,
-    title: "✨ Featured: MediOps Platform",
-    href: "/work/mediops-platform",
+    title: "✨ Featured: ArcticRadar",
+    href: "https://radar-fxqr.onrender.com/",
   },
   subline: (
     <>
