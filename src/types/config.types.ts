@@ -166,9 +166,9 @@ export type SocialSharingConfig = {
 };
 
 /**
- * Top-level config types for once-ui.config.js
+ * Top-level config types for theme.config.ts
  */
-export type OnceUIConfig = {
+export type ThemeConfig = {
   display: DisplayConfig;
   mailchimp: MailchimpConfig;
   routes: RoutesConfig;
